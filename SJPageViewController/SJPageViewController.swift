@@ -58,11 +58,13 @@ class SJPageViewController: UIViewController {
     super.didReceiveMemoryWarning()
   }
   
-  func goForward(){
+  func goForward(viewController:UIViewController?){
     guard let currentVC = currentContainer.viewController else {return}
     guard duringTransition == false else {return}
     duringTransition = true
-    if let nextVC = dataSource?.pageViewController(self, viewControllerAfterViewController: currentVC) {
+    var nextVC = dataSource?.pageViewController(self, viewControllerAfterViewController: currentVC)
+    nextVC = viewController ?? nextVC
+    if nextVC != nil {
       nextContainer.viewController = nextVC
       nextContainer.frame = view.bounds
       nextContainer.center = CGPoint(x: view.center.x * 3.0 + interPageSpacing,y: view.center.y)
@@ -71,12 +73,14 @@ class SJPageViewController: UIViewController {
       nextPageMovingAnimation(0.3)
     }
   }
-  func goBack(){
+  func goBack(viewController:UIViewController?){
     guard let currentVC = currentContainer.viewController else {return}
     guard duringTransition == false else {return}
     duringTransition = true
-    if let nextVC = dataSource?.pageViewController(self, viewControllerAfterViewController: currentVC) {
-      nextContainer.viewController = nextVC
+    var prevVC = dataSource?.pageViewController(self, viewControllerBeforeViewController: currentVC)
+    prevVC = viewController ?? prevVC
+    if prevVC != nil {
+      nextContainer.viewController = prevVC
       nextContainer.frame = view.bounds
       nextContainer.center = CGPoint(x: view.center.x * 3.0 + interPageSpacing,y: view.center.y)
       view.addSubview(nextContainer)
