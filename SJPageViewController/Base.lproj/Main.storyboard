@@ -36,10 +36,47 @@
             </objects>
             <point key="canvasLocation" x="565" y="354"/>
         </scene>
+        <!--Stub View Controller-->
+        <scene sceneID="BDA-Ms-B9N">
+            <objects>
+                <viewController storyboardIdentifier="stub" id="3Rh-eX-aLx" customClass="StubViewController" customModule="SJPageViewController" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="IhP-Pt-ttx"/>
+                        <viewControllerLayoutGuide type="bottom" id="bWe-yD-90g"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="DJR-J4-Ysf">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Veu-dF-ECr">
+                                <rect key="frame" x="279" y="290" width="42" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Veu-dF-ECr" firstAttribute="centerX" secondItem="DJR-J4-Ysf" secondAttribute="centerX" id="iM1-LG-mV0"/>
+                            <constraint firstItem="Veu-dF-ECr" firstAttribute="centerY" secondItem="DJR-J4-Ysf" secondAttribute="centerY" id="o0m-4Y-yWd"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="label" destination="Veu-dF-ECr" id="O9r-cr-cgM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qbd-ZH-cEU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1246" y="354"/>
+        </scene>
         <!--Page View Controller-->
         <scene sceneID="t0H-8q-2gD">
             <objects>
                 <viewController id="tO7-Hr-gJa" customClass="SJPageViewController" customModule="SJPageViewController" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="uvC-4y-NyL"/>
+                        <viewControllerLayoutGuide type="bottom" id="R2R-Dv-tBI"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="moR-hR-3lG">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

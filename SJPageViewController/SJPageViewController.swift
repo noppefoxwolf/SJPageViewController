@@ -32,7 +32,6 @@ class SJPageViewController: UIViewController {
   var disableSwipeNext  = false
   var disableSwipePrev = false
   
-  
   private var containers:[SJPageContainerView] = []
   private var prevContainer:SJPageContainerView{return containers[0]}
   private var currentContainer:SJPageContainerView{return containers[1]}
@@ -128,11 +127,16 @@ class SJPageViewController: UIViewController {
   }
   
   func beforePageMovingAnimation(duration: NSTimeInterval){
+    addChildViewController(prevContainer.viewController!)
+    currentContainer.viewController?.willMoveToParentViewController(nil)
+    nextContainer.viewController?.willMoveToParentViewController(nil)
     UIView.animateWithDuration(duration, delay: 0.0, options: [.AllowAnimatedContent], animations: { () -> Void in
       self.prevContainer.center    = self.view.center
       self.currentContainer.center = CGPoint(x: self.view.center.x * 3.0 + self.interPageSpacing, y: self.view.center.y)
       self.nextContainer.center    = CGPoint(x: self.view.center.x * 5.0 + (self.interPageSpacing * 2.0), y: self.view.center.y)
       },completion: { (finish) -> Void in
+        self.currentContainer.viewController?.removeFromParentViewController()
+        self.nextContainer.viewController?.removeFromParentViewController()
         let prevVC = self.currentContainer.viewController
         self.currentContainer.viewController = self.prevContainer.viewController
         self.prevContainer.viewController = nil
@@ -141,16 +145,22 @@ class SJPageViewController: UIViewController {
         self.nextContainer.removeFromSuperview()
         self.currentContainer.center = self.view.center
         self.duringTransition = false
+        self.currentContainer.viewController?.didMoveToParentViewController(self)
         self.delegate?.pageViewController(self, didFinishAnimating: prevVC)
     })
   }
   func nextPageMovingAnimation(duration: NSTimeInterval){
+    addChildViewController(nextContainer.viewController!)
+    currentContainer.viewController?.willMoveToParentViewController(nil)
+    prevContainer.viewController?.willMoveToParentViewController(nil)
     UIView.animateWithDuration(duration, delay: 0.0, options: [.AllowAnimatedContent], animations: { () -> Void in
       self.prevContainer.center    = CGPoint(x: -self.view.center.x * 5.0 - (self.interPageSpacing * 2.0), y: self.view.center.y)
       self.currentContainer.center = CGPoint(x: -self.view.center.x - self.interPageSpacing, y: self.view.center.y)
       self.nextContainer.center    = self.view.center
       },completion: { (finish) -> Void in
-        let prevVC = self.currentContainer.viewController        
+        self.currentContainer.viewController?.removeFromParentViewController()
+        self.prevContainer.viewController?.removeFromParentViewController()
+        let prevVC = self.currentContainer.viewController
         self.currentContainer.viewController = self.nextContainer.viewController
         self.prevContainer.viewController = nil
         self.nextContainer.viewController = nil
@@ -158,6 +168,7 @@ class SJPageViewController: UIViewController {
         self.nextContainer.removeFromSuperview()
         self.currentContainer.center = self.view.center
         self.duringTransition = false
+        self.currentContainer.viewController?.didMoveToParentViewController(self)
         self.delegate?.pageViewController(self, didFinishAnimating: prevVC)
     })
   }

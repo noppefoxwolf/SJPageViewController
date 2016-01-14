@@ -17,13 +17,9 @@ class ViewController: UIViewController {
     super.viewDidLoad()
     
     for i in 0...10 {
-      let vc = UIViewController()
+      let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("stub") as! StubViewController
+      vc.title = "page\(i)"      
       vc.view.backgroundColor = getRandomColor()
-      let label = UILabel()
-      label.text = "page\(i)"
-      label.center = vc.view.center
-      label.sizeToFit()
-      vc.view.addSubview(label)
       viewControllers.append(vc)
     }
     pageViewController?.delegate = self

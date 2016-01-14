@@ -13,6 +13,7 @@
 		D7CB68941C474445000E0140 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7CB68931C474445000E0140 /* Assets.xcassets */; };
 		D7CB68971C474445000E0140 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7CB68951C474445000E0140 /* LaunchScreen.storyboard */; };
 		D7CB689F1C474466000E0140 /* SJPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CB689E1C474466000E0140 /* SJPageViewController.swift */; };
+		D7CB68A11C476FB6000E0140 /* StubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CB68A01C476FB6000E0140 /* StubViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		D7CB68961C474445000E0140 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D7CB68981C474445000E0140 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D7CB689E1C474466000E0140 /* SJPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJPageViewController.swift; sourceTree = "<group>"; };
+		D7CB68A01C476FB6000E0140 /* StubViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StubViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			children = (
 				D7CB688C1C474445000E0140 /* AppDelegate.swift */,
 				D7CB688E1C474445000E0140 /* ViewController.swift */,
+				D7CB68A01C476FB6000E0140 /* StubViewController.swift */,
 				D7CB68901C474445000E0140 /* Main.storyboard */,
 				D7CB68931C474445000E0140 /* Assets.xcassets */,
 				D7CB68951C474445000E0140 /* LaunchScreen.storyboard */,
@@ -138,6 +141,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7CB68A11C476FB6000E0140 /* StubViewController.swift in Sources */,
 				D7CB689F1C474466000E0140 /* SJPageViewController.swift in Sources */,
 				D7CB688F1C474445000E0140 /* ViewController.swift in Sources */,
 				D7CB688D1C474445000E0140 /* AppDelegate.swift in Sources */,
@@ -290,6 +294,7 @@
 				D7CB689D1C474445000E0140 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
