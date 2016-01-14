@@ -27,7 +27,7 @@ class SJPageViewController: UIViewController {
   
   ///Configs
   var initializationController:UIViewController!{didSet{currentContainer.viewController = self.initializationController}}
-  var interPageSpacing:CGFloat = 3.0
+  var interPageSpacing:CGFloat = 0.0
   var requireVelocity:CGFloat = 20.0
   var disableSwipeNext  = false
   var disableSwipePrev = false
@@ -111,7 +111,7 @@ class SJPageViewController: UIViewController {
   }
   
   func resetPositionAnimation(){
-    UIView.animateWithDuration(0.2, delay: 0.0, options: [.AllowAnimatedContent], animations: { () -> Void in
+    UIView.animateWithDuration(0.2, delay: 0.0, options: [.AllowAnimatedContent,.CurveEaseOut], animations: { () -> Void in
       self.prevContainer.center    = CGPoint(x: -self.view.center.x - self.interPageSpacing,y: self.view.center.y)
       self.currentContainer.center = self.view.center
       self.nextContainer.center    = CGPoint(x: self.view.center.x * 3.0 + self.interPageSpacing,y: self.view.center.y)
@@ -130,7 +130,7 @@ class SJPageViewController: UIViewController {
     addChildViewController(prevContainer.viewController!)
     currentContainer.viewController?.willMoveToParentViewController(nil)
     nextContainer.viewController?.willMoveToParentViewController(nil)
-    UIView.animateWithDuration(duration, delay: 0.0, options: [.AllowAnimatedContent], animations: { () -> Void in
+    UIView.animateWithDuration(duration, delay: 0.0, options: [.AllowAnimatedContent,.CurveEaseOut], animations: { () -> Void in
       self.prevContainer.center    = self.view.center
       self.currentContainer.center = CGPoint(x: self.view.center.x * 3.0 + self.interPageSpacing, y: self.view.center.y)
       self.nextContainer.center    = CGPoint(x: self.view.center.x * 5.0 + (self.interPageSpacing * 2.0), y: self.view.center.y)
@@ -153,7 +153,7 @@ class SJPageViewController: UIViewController {
     addChildViewController(nextContainer.viewController!)
     currentContainer.viewController?.willMoveToParentViewController(nil)
     prevContainer.viewController?.willMoveToParentViewController(nil)
-    UIView.animateWithDuration(duration, delay: 0.0, options: [.AllowAnimatedContent], animations: { () -> Void in
+    UIView.animateWithDuration(duration, delay: 0.0, options: [.AllowAnimatedContent,.CurveEaseOut], animations: { () -> Void in
       self.prevContainer.center    = CGPoint(x: -self.view.center.x * 5.0 - (self.interPageSpacing * 2.0), y: self.view.center.y)
       self.currentContainer.center = CGPoint(x: -self.view.center.x - self.interPageSpacing, y: self.view.center.y)
       self.nextContainer.center    = self.view.center
