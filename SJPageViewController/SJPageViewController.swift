@@ -129,7 +129,7 @@ class SJPageViewController: UIViewController {
     }else{
       guard duringTransition == true else {return}
       beforeTranslation = CGPointZero
-      let duration = NSTimeInterval(min(200.0 / abs(v.x),0.3))
+      let duration = NSTimeInterval(min(300.0 / abs(v.x),0.4))
       if v.x < -requireVelocity && currentContainer.center.x < view.center.x && nextContainer.viewController != nil {
         nextPageMovingAnimation(duration)
       }else if v.x > requireVelocity && currentContainer.center.x > view.center.x && prevContainer.viewController != nil {
