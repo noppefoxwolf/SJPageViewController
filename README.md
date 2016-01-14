@@ -4,11 +4,11 @@
 
 |  | SJPageViewController | UIPageViewController |
 |:-----------|:------------|:------------|
-| bounce effect| none| difficult to disable|
-| handle panGesture|easy|difficult|
-| transition completed percent | exist | difficult|
-| interPageSpacing | exist | exist | 
-| disable swipe direction | exist | difficult |
-| get currentViewController | exist | difficult |
+| バウンドエフェクト| 無い| 無効にするのが大変|
+| UIPanGesture|プロパティとして存在|subViewから引っこ抜くしか無い上に挙動が独特|
+| 画面遷移の状態| NSProgressで取得可能 | scrollViewを監視したり大変|
+| interPageSpacing | ある | ある | 
+| スワイプの無効化 | 出来る | 大変 |
+| currentViewController | プロパティとして存在 | とるの大変 |
 
 
