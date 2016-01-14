@@ -58,6 +58,32 @@ class SJPageViewController: UIViewController {
     super.didReceiveMemoryWarning()
   }
   
+  func goForward(){
+    guard let currentVC = currentContainer.viewController else {return}
+    guard duringTransition == false else {return}
+    duringTransition = true
+    if let nextVC = dataSource?.pageViewController(self, viewControllerAfterViewController: currentVC) {
+      nextContainer.viewController = nextVC
+      nextContainer.frame = view.bounds
+      nextContainer.center = CGPoint(x: view.center.x * 3.0 + interPageSpacing,y: view.center.y)
+      view.addSubview(nextContainer)
+      delegate?.pageViewControllerWillTransition(self)
+      nextPageMovingAnimation(0.3)
+    }
+  }
+  func goBack(){
+    guard let currentVC = currentContainer.viewController else {return}
+    guard duringTransition == false else {return}
+    duringTransition = true
+    if let nextVC = dataSource?.pageViewController(self, viewControllerAfterViewController: currentVC) {
+      nextContainer.viewController = nextVC
+      nextContainer.frame = view.bounds
+      nextContainer.center = CGPoint(x: view.center.x * 3.0 + interPageSpacing,y: view.center.y)
+      view.addSubview(nextContainer)
+      delegate?.pageViewControllerWillTransition(self)
+      beforePageMovingAnimation(0.3)
+    }
+  }
   
   func panAction(gesture:UIPanGestureRecognizer){
     guard let currentVC = currentContainer.viewController else {return}
@@ -110,7 +136,7 @@ class SJPageViewController: UIViewController {
     }
   }
   
-  func resetPositionAnimation(){
+  private func resetPositionAnimation(){
     UIView.animateWithDuration(0.2, delay: 0.0, options: [.AllowAnimatedContent,.CurveEaseOut], animations: { () -> Void in
       self.prevContainer.center    = CGPoint(x: -self.view.center.x - self.interPageSpacing,y: self.view.center.y)
       self.currentContainer.center = self.view.center
@@ -126,7 +152,7 @@ class SJPageViewController: UIViewController {
     })
   }
   
-  func beforePageMovingAnimation(duration: NSTimeInterval){
+  private func beforePageMovingAnimation(duration: NSTimeInterval){
     addChildViewController(prevContainer.viewController!)
     currentContainer.viewController?.willMoveToParentViewController(nil)
     nextContainer.viewController?.willMoveToParentViewController(nil)
@@ -149,7 +175,7 @@ class SJPageViewController: UIViewController {
         self.delegate?.pageViewController(self, didFinishAnimating: prevVC)
     })
   }
-  func nextPageMovingAnimation(duration: NSTimeInterval){
+  private func nextPageMovingAnimation(duration: NSTimeInterval){
     addChildViewController(nextContainer.viewController!)
     currentContainer.viewController?.willMoveToParentViewController(nil)
     prevContainer.viewController?.willMoveToParentViewController(nil)
