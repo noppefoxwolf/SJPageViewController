@@ -135,7 +135,13 @@ class SJPageViewController: UIViewController {
       }else if v.x > requireVelocity && currentContainer.center.x > view.center.x && prevContainer.viewController != nil {
         beforePageMovingAnimation(duration * 0.9)
       }else{
-        resetPositionAnimation()
+        if currentContainer.center.x < 0 {
+          nextPageMovingAnimation(0.2)
+        }else if currentContainer.center.x > view.bounds.width{
+          beforePageMovingAnimation(0.2)
+        }else{
+          resetPositionAnimation()
+        }
       }
     }
   }
