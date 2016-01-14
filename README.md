@@ -1,5 +1,7 @@
 # SJPageViewController
 
+![](https://raw.githubusercontent.com/noppefoxwolf/SJPageViewController/master/sample.gif)
+
 |  | SJPageViewController | UIPageViewController |
 |:-----------|:------------|:------------|
 | bounce effect| none| difficult to disable|
