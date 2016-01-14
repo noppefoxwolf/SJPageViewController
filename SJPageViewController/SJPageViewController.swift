@@ -23,27 +23,22 @@ class SJPageViewController: UIViewController {
   var dataSource:SJPageViewControllerDataSource?
   
   var panGestureRecognizer:UIPanGestureRecognizer!
-  var currentViewController:UIViewController?{
-    return currentContainer.viewController
-  }
+  var currentViewController:UIViewController?{return currentContainer.viewController}
+  
+  ///Configs
+  var initializationController:UIViewController!{didSet{currentContainer.viewController = self.initializationController}}
+  var interPageSpacing:CGFloat = 3.0
+  var requireVelocity:CGFloat = 20.0
+  var disableSwipeNext  = false
+  var disableSwipePrev = false
+  
   
   private var containers:[SJPageContainerView] = []
   private var prevContainer:SJPageContainerView{return containers[0]}
   private var currentContainer:SJPageContainerView{return containers[1]}
   private var nextContainer:SJPageContainerView{return containers[2]}
-  private var duringTransition = false
   private var beforeTranslation = CGPointZero
-  
-  ///Configs
-  var initializationController:UIViewController!{
-    didSet{
-      currentContainer.viewController = self.initializationController
-    }
-  }
-  var interPageSpacing:CGFloat = 3.0
-  var requireVelocity:CGFloat = 20.0
-  var disableSwipeNext  = false
-  var disableSwipePrev = false
+  private var duringTransition = false{didSet{view.userInteractionEnabled = !duringTransition}}
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -51,6 +46,8 @@ class SJPageViewController: UIViewController {
     view.addSubview(currentContainer)
     panGestureRecognizer = UIPanGestureRecognizer(target: self, action: "panAction:")
     view.addGestureRecognizer(panGestureRecognizer)
+    nextContainer.userInteractionEnabled = false
+    prevContainer.userInteractionEnabled = false
   }
   
   override func viewDidLayoutSubviews() {
@@ -101,8 +98,8 @@ class SJPageViewController: UIViewController {
       progress.completedUnitCount = abs(Int64(view.center.x - currentContainer.center.x))
       delegate?.pageViewController(self, transitionProgress: progress, isInverse: currentContainer.center.x > view.center.x)
     }else{
-      beforeTranslation = CGPointZero
       guard duringTransition == true else {return}
+      beforeTranslation = CGPointZero
       let duration = NSTimeInterval(min(200.0 / abs(v.x),0.3))
       if v.x < -requireVelocity && currentContainer.center.x < view.center.x && nextContainer.viewController != nil {
         nextPageMovingAnimation(duration)
