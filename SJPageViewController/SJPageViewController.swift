@@ -58,7 +58,7 @@ class SJPageViewController: UIViewController {
     super.didReceiveMemoryWarning()
   }
   
-  func goForward(viewController:UIViewController?){
+  func goForward(viewController:UIViewController? = nil){
     guard let currentVC = currentContainer.viewController else {return}
     guard duringTransition == false else {return}
     duringTransition = true
@@ -73,7 +73,7 @@ class SJPageViewController: UIViewController {
       nextPageMovingAnimation(0.3)
     }
   }
-  func goBack(viewController:UIViewController?){
+  func goBack(viewController:UIViewController? = nil){
     guard let currentVC = currentContainer.viewController else {return}
     guard duringTransition == false else {return}
     duringTransition = true
